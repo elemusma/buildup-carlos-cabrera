@@ -1,25 +1,31 @@
-<!DOCTYPE html>
-<html <?php language_attributes(); ?>>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<?php 
+<?php
+echo '<!DOCTYPE html>';
+echo '<html ';
+language_attributes();
+echo '>';
+echo '<head>';
+echo '<meta charset="UTF-8">';
+echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
 
 if(get_field('header', 'options')) { the_field('header', 'options'); }
 if(get_field('header_code')) { the_field('header_code'); }
 
 if(get_field('custom_css')) { 
-?> 
-<style>
-<?php the_field('custom_css'); ?>
-</style>
-<?php 
+
+echo '<style>';
+
+the_field('custom_css');
+
+echo '</style>';
+
 }
 wp_head(); 
-?>
-</head>
-<body <?php body_class(); ?>>
-<?php
+
+echo '</head>';
+echo '<body '; 
+body_class(); 
+echo '>';
+
 if(get_field('body','options')) { the_field('body','options'); }
 if(get_field('body_code')) { the_field('body_code'); }
 echo '<div class="blank-space"></div>';
@@ -38,6 +44,13 @@ echo wp_get_attachment_image($logo['id'],'full',"",['class'=>'h-auto','style'=>'
 }
 
 echo '</a>';
+echo '</div>';
+
+echo '<div class="col-6 text-center mobile-hidden">';
+wp_nav_menu(array(
+    'menu' => 'primary',
+    'menu_class'=>'menu d-flex list-unstyled mb-0'
+    )); 
 echo '</div>';
 
 echo '<div class="col-lg-4 col-6 desktop-hidden">';
@@ -82,62 +95,32 @@ echo '</div>';
 
 echo '</header>';
 
-echo '<section class="hero position-relative">';
-$globalPlaceholderImg = get_field('global_placeholder_image','options');
-if(is_page()){
-if(has_post_thumbnail()){
-the_post_thumbnail('full', array('class' => 'w-100 h-100 bg-img position-absolute'));
-} else {
-echo wp_get_attachment_image($globalPlaceholderImg['id'],'full','',['class'=>'w-100 h-100 bg-img position-absolute']);
-}
-} else {
-echo wp_get_attachment_image($globalPlaceholderImg['id'],'full','',['class'=>'w-100 h-100 bg-img position-absolute']);
-}
+// echo '<section class="hero position-relative">';
 
+// if(!is_front_page()) {
+// echo '<div class="container pt-5 pb-5 text-white text-center">';
+// echo '<div class="row">';
+// echo '<div class="col-md-12">';
+// if(is_page() || !is_front_page()){
+// echo '<h1 class="">' . get_the_title() . '</h1>';
+// } elseif(is_single()){
+// echo '<h1 class="">' . single_post_title() . '</h1>';
+// } elseif(is_author()){
+// echo '<h1 class="">Author: ' . get_the_author() . '</h1>';
+// } elseif(is_tag()){
+// echo '<h1 class="">' . get_single_tag_title() . '</h1>';
+// } elseif(is_category()){
+// echo '<h1 class="">' . get_single_cat_title() . '</h1>';
+// } elseif(is_archive()){
+// echo '<h1 class="">' . get_archive_title() . '</h1>';
+// }
+// elseif(!is_front_page() && is_home()){
+// echo '<h1 class="">' . get_the_title(133) . '</h1>';
+// }
+// echo '</div>';
+// echo '</div>';
+// echo '</div>';
+// }
 
-if(is_front_page()) {
-echo '<div class="pt-5 pb-5 text-white text-center">';
-echo '<div class="position-relative">';
-echo '<div class="multiply overlay position-absolute w-100 h-100 bg-img"></div>';
-echo '<div class="position-relative">';
-echo '<div class="container">';
-echo '<div class="row">';
-echo '<div class="col-12">';
-echo '<h1 class="pt-3 pb-3 mb-0">' . get_the_title() . '</h1>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
-}
-
-
-
-if(!is_front_page()) {
-echo '<div class="container pt-5 pb-5 text-white text-center">';
-echo '<div class="row">';
-echo '<div class="col-md-12">';
-if(is_page() || !is_front_page()){
-echo '<h1 class="">' . get_the_title() . '</h1>';
-} elseif(is_single()){
-echo '<h1 class="">' . single_post_title() . '</h1>';
-} elseif(is_author()){
-echo '<h1 class="">Author: ' . get_the_author() . '</h1>';
-} elseif(is_tag()){
-echo '<h1 class="">' . get_single_tag_title() . '</h1>';
-} elseif(is_category()){
-echo '<h1 class="">' . get_single_cat_title() . '</h1>';
-} elseif(is_archive()){
-echo '<h1 class="">' . get_archive_title() . '</h1>';
-}
-elseif(!is_front_page() && is_home()){
-echo '<h1 class="">' . get_the_title(133) . '</h1>';
-}
-echo '</div>';
-echo '</div>';
-echo '</div>';
-}
-
-echo '</section>';
+// echo '</section>';
 ?>
