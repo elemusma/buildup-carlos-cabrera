@@ -87,6 +87,14 @@ body {
     margin-right: -15px;
 }
 
+/* Reverse the order of flex items on larger screens */
+/* @media screen and (min-width: 768px) { */
+.flex-row-reverse {
+    flex-direction: row-reverse;
+}
+
+/* } */
+
 /* Justify Content */
 .justify-content-start {
     justify-content: flex-start;

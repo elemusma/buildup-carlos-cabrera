@@ -8,6 +8,7 @@ function register_acf_blocks() {
     register_block_type( __DIR__ . '/blocks/about' );
     register_block_type( __DIR__ . '/blocks/testimonials' );
     register_block_type( __DIR__ . '/blocks/image-block' );
+	register_block_type( __DIR__ . '/blocks/content-and-image' );
     // register_block_type( __DIR__ . '/blocks/popup' );
     // register_block_type( __DIR__ . '/blocks/gallery' );
     // register_block_type( __DIR__ . '/blocks/testimonials' );
