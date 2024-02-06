@@ -51,8 +51,8 @@ wp_enqueue_style('btn', get_theme_file_uri('/css/elements/btn.css'));
 wp_enqueue_style('fonts', get_theme_file_uri('/css/elements/fonts.css'));
 wp_enqueue_style('proxima-nova', get_theme_file_uri('/proxima-nova/proxima-nova.css'));
 wp_enqueue_style('blair-itc', get_theme_file_uri('/blair-itc/blair-itc.css'));
-wp_enqueue_style('aspira', get_theme_file_uri('/aspira-font/aspira-font.css'));
-wp_enqueue_style('coromant-garamond', '//use.typekit.net/fqe2slt.css');
+// wp_enqueue_style('aspira', get_theme_file_uri('/aspira-font/aspira-font.css'));
+// wp_enqueue_style('coromant-garamond', '//use.typekit.net/fqe2slt.css');
 
 }
 add_action('wp_enqueue_scripts', 'carlos_cabrera_stylesheets');
@@ -311,7 +311,6 @@ add_shortcode('phone_number', 'my_phone_number');
 function get_latest_videos_from_youtube_channel() {
     // Load the Google Client Library
     if (!class_exists('Google_Client')) {
-        // require_once(plugin_dir_path(__FILE__) . 'google-api-php-client/autoload.php');
 		require_once get_template_directory() . '/google-api-php-client--PHP7.4/vendor/autoload.php';
 
     }
