@@ -20,7 +20,7 @@ if($image_side == 'Right') {
 }
 
 echo '<div class="col-lg-6 ' . get_field('column_classes') . '" style="' . get_field('column_style') . '">';
-    echo '<div data-aos="fade-up">';
+    echo '<div data-aos="' . get_field('content_data_aos_animation') . '">';
         echo get_field('content');
     echo '</div>';
 echo '</div>';
@@ -28,7 +28,7 @@ echo '</div>';
 $image_or_gallery = get_field('image_or_gallery');
 
 echo '<div class="col-lg-6">';
-echo '<div data-aos="fade-up">';
+echo '<div data-aos="' . get_field('image_data_aos_animation') . '">';
 
 if($image_or_gallery == 'Image') {
     $image = get_field('image_section');

@@ -35,7 +35,7 @@ echo '<div class="nav">';
 echo '<div class="container-fluid">';
 echo '<div class="row align-items-center">';
 
-echo '<div class="col-lg-4 col-6 text-center">';
+echo '<div class="col-lg-4 col-6">';
 
 echo '<a href="' . home_url() . '">';
 
