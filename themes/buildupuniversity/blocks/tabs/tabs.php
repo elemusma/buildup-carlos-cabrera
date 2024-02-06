@@ -1,6 +1,6 @@
 <?php
-echo '<section class="position-relative ' . get_field('classes') . '" style="padding:50px 0px;' . get_field('style') . '" id="' . get_field('id') . '">';
-
+echo '<section class="position-relative ' . get_field('classes') . '" style="padding:50px 0px;' . get_field('style') . '">';
+echo '<div class="position-absolute" style="top:-100px;" id="' . get_field('id') . '"></div>';
 echo get_template_part('partials/bg-img');
 
 echo '<div class="container">';
@@ -11,7 +11,7 @@ echo '<div class="row justify-content-center">';
 
 echo '</div>';
 
-
+echo '<div data-aos="fade-up">';
 if(have_rows('tabs_repeater')):
     $tabsRepeater = 0;
     echo '<div class="d-flex justify-content-center flex-wrap">';
@@ -57,6 +57,9 @@ if($tabsRepeater == 1) {
 endwhile; 
 echo '</div>';
 endif;
+echo '</div>';
+
+
 
 echo '</div>';
 

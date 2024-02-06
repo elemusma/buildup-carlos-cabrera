@@ -3,8 +3,8 @@
 wp_enqueue_style('owl.carousel.min', get_theme_file_uri('/owl-carousel/owl.carousel.min.css'));
 wp_enqueue_style('owl.theme.default', get_theme_file_uri('/owl-carousel/owl.theme.default.min.css'));
 
-echo '<section class="position-relative content-section ' . get_field('classes') . '" style="padding:50px 0;' . get_field('style') . '" id="' . get_field('id') . '">';
-
+echo '<section class="position-relative content-section ' . get_field('classes') . '" style="padding:50px 0;' . get_field('style') . '">';
+echo '<div class="position-absolute" style="top:-100px;" id="' . get_field('id') . '"></div>';
 echo get_template_part('partials/bg-img');
 
 echo get_field('code_block');
@@ -28,13 +28,16 @@ echo '</div>';
 $image_or_gallery = get_field('image_or_gallery');
 
 echo '<div class="col-lg-6">';
+echo '<div data-aos="fade-up">';
 
 if($image_or_gallery == 'Image') {
     $image = get_field('image_section');
-    echo wp_get_attachment_image($image['id'],'full','',[
-        'class'=>'w-100 h-auto' . get_field('image_section_classes'),
-        'style'=>'' . get_field('image_section_style')
-    ]);
+    if($image) {
+        echo wp_get_attachment_image($image['id'],'full','',[
+            'class'=>'w-100 h-auto' . get_field('image_section_classes'),
+            'style'=>'' . get_field('image_section_style')
+        ]);
+    }
 
 } elseif ($image_or_gallery == 'Gallery') {
     $gallery = get_field('gallery');
@@ -55,6 +58,7 @@ echo '</div>';
 // echo '</div>';
 endif;
 }
+echo '</div>';
 echo '</div>';
 
 echo '</div>';

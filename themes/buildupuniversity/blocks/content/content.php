@@ -1,5 +1,6 @@
 <?php
-echo '<section class="position-relative content-section ' . get_field('classes') . '" style="padding:50px 0;' . get_field('style') . '" id="' . get_field('id') . '">';
+echo '<section class="position-relative content-section ' . get_field('classes') . '" style="padding:100px 0;' . get_field('style') . '">';
+echo '<div class="position-absolute" style="top:-100px;" id="' . get_field('id') . '"></div>';
 
 echo get_template_part('partials/bg-img');
 

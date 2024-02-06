@@ -1,4 +1,5 @@
-.text-white * {
+.text-white *,
+.text-white {
   color: white;
 }
 
@@ -56,8 +57,16 @@ a.text-black:hover {
 }
 
 html,
-body {
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "proxima_novaregular";
+  color: #353535;
 }
 
 .light {
@@ -106,13 +115,28 @@ h6 {
   margin: 0px;
 }
 
-.cormorant-garamond {
+h2,
+.h2 {
+  font-family: 'blairitc_ttlight';
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+
+@media only screen and (max-width:767px) {
+
+  h2,
+  .h2 {
+    font-size: 1.75rem;
+  }
+}
+
+/* .cormorant-garamond {
   font-family: cormorant-garamond, serif;
 }
 
 .cormorant-garamond.bold {
   font-family: cormorant-garamond, serif;
-}
+} */
 
 /* 
 font-family: cormorant-garamond, serif; 

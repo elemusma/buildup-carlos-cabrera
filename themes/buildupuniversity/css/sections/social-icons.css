@@ -1,6 +1,7 @@
 .si svg {
     height: 15px;
     width: auto;
+    fill: white;
 }
 
 .svg-icon {

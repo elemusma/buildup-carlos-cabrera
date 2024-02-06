@@ -1,8 +1,8 @@
 <?php
 
 // start of testimonials
-echo '<section class="position-relative content-section ' . get_field('classes') . '" style="padding:50px 0;' . get_field('style') . '" id="' . get_field('id') . '">';
-
+echo '<section class="position-relative content-section ' . get_field('classes') . '" style="padding:100px 0;' . get_field('style') . '">';
+echo '<div class="position-absolute" style="top:-100px;" id="' . get_field('id') . '"></div>';
 echo get_template_part('partials/bg-img');
 
 echo get_field('code_block');
@@ -11,11 +11,6 @@ echo '<div class="container">';
 echo '<div class="row justify-content-center">';
 
 echo get_template_part('partials/content-block');
-
-// echo '<div class="col-12 text-center pb-4">';
-// echo '<h3 class="text-white">' . get_field('testimonials_title') . '</h3>';
-// echo '</div>';
-
 
 // start of repeater
 
@@ -29,15 +24,7 @@ echo '<div class="col col-reviews text-white h-100" style="" data-aos="fade-up" 
 
 echo '<div class="row h-100" style="background:#393939;border-radius:4px;padding:25px;">';
 
-// echo '<div class="col-1">';
-
-// echo '<span class="h1 text-gray" style="font-family: cursive;">"</span>';
-
-// echo '</div>';
-
 echo '<div class="col-12">';
-
-// echo '<span class="text-gray quotes-testimonial" style="font-size:3rem;">"</span>';
 
 echo '<div class="position-relative" style="">';
 
@@ -60,14 +47,7 @@ echo '<div class="col-9" style="padding-left:0px;">';
 
 echo '<span class="name text-uppercase">' . get_sub_field('name') . '</span><br>';
 
-// echo wp_get_attachment_image(488,'full','',[
-// 	'class'=>'',
-// 	'style'=>''
-// ]);
-
 echo '<img src="https://buildupuniversity.com/wp-content/uploads/2024/02/Google-Star-Reviews.png" alt="" class="" style="width:75px;height:25px;object-fit:contain;">';
-
-// echo '<span class="industry text-white"><small>' . get_sub_field('title') . '</small></span>';
 
 echo '</div>'; // end of col-9
 echo '</div>'; // end of row

@@ -72,9 +72,9 @@ function carlos_cabrera_stylesheets_footer() {
 	wp_enqueue_script('lightbox-min-js', get_theme_file_uri('/lightbox/lightbox.min.js'));
 	wp_enqueue_script('lightbox-js', get_theme_file_uri('/lightbox/lightbox.js'));
     // aos
-    // wp_enqueue_script('aos-js', get_theme_file_uri('/aos/aos.js'));
-    // wp_enqueue_script('aos-custom-js', get_theme_file_uri('/aos/aos-custom.js'));
-    // wp_enqueue_style('aos-css', get_theme_file_uri('/aos/aos.css'));
+    wp_enqueue_script('aos-js', get_theme_file_uri('/aos/aos.js'));
+    wp_enqueue_script('aos-custom-js', get_theme_file_uri('/aos/aos-custom.js'));
+    wp_enqueue_style('aos-css', get_theme_file_uri('/aos/aos.css'));
 
 	// jquery fittext
 	// wp_enqueue_script('jquery-min-js', get_theme_file_uri('/jquery-fittext/jquery.min.js'));
@@ -247,8 +247,16 @@ function social_media_icons( $atts, $content = null ) {
 
 	$socialIcons = '';
 
+	$a = shortcode_atts( array(
+
+		'class' => '',
+
+		'style' => ''
+
+	), $atts );
+
 	if(have_rows('social_icons','options')): 
-		$socialIcons .= '<div class="si d-flex flex-wrap justify-content-end">';
+		$socialIcons .= '<div class="si d-flex flex-wrap justify-content-end ' . esc_attr($a['class']) . '" style="' . esc_attr($a['style']) . '">';
 		while(have_rows('social_icons','options')): the_row(); 
 	$svgOrImg = get_sub_field('svg_or_image');
 	$socialLink = get_sub_field('link');
@@ -278,9 +286,9 @@ function social_media_icons( $atts, $content = null ) {
 	$socialIcons .= '</div>';
 	endif; 
 
-	// return $socialIcons;
+	return $socialIcons;
 	
-	return get_template_part('partials/si');
+	// return get_template_part('partials/si');
 
 	// [social_icons class="" style=""]
 
@@ -300,52 +308,42 @@ function my_phone_number() {
 }
 add_shortcode('phone_number', 'my_phone_number');
 
-// ENABLE WOOCOMMERCE
-// add_action('after_setup_theme',function() {
-//     add_theme_support('woocommerce');
-// });
-// add_theme_support('wc-product-gallery-zoom');
-// add_theme_support('wc-product-gallery-lightbox');
-// add_theme_support('wc-product-gallery-slider');
+function get_latest_videos_from_youtube_channel() {
+    // Load the Google Client Library
+    if (!class_exists('Google_Client')) {
+        // require_once(plugin_dir_path(__FILE__) . 'google-api-php-client/autoload.php');
+		require_once get_template_directory() . '/google-api-php-client--PHP7.4/vendor/autoload.php';
 
+    }
 
-// WOOCOMMERCE CONTENT WITH NO SIDEBAR
-// add_action('woocommerce_before_main_content','add_container_class',9);
-// function add_container_class(){
-// echo '<div class="container pt-5 pb-5">';
-// echo '<div class="row justify-content-center">';
-// echo '<div class="col-md-12">';
-// }
+    // Set up the client
+    $client = new Google_Client();
+    $client->setDeveloperKey($GLOBALS['youtube']);
+    $youtube = new Google_Service_YouTube($client);
 
-// add_action('woocommerce_after_main_content','close_container_class',9);
-// function close_container_class(){
-// echo '</div>';
-// echo '</div>';
-// echo '</div>';
-// }
+    // Send a request to the API to get the latest 10 videos from a specific channel
+    $searchResponse = $youtube->search->listSearch('id,snippet', array(
+        'channelId' => 'UCNlzIzvhDCggZYg5DU-jQ5g', // AdamZwingler
+        'type' => 'video',
+        'order' => 'date',
+        'maxResults' => 4,
+    ));
 
-// removes sidebar
-// remove_action('woocommerce_sidebar','woocommerce_get_sidebar');
+    // Print the results
+    ob_start();
+	echo '<div class="row">';
+    foreach ($searchResponse['items'] as $searchResult) {
+		echo '<div class="col-lg-6" style="padding-top:15px;padding-bottom:15px;">';
+        echo '<div class="video">';
+        // echo '<h3>' . $searchResult['snippet']['title'] . '</h3>';
+        // echo '<p>' . $searchResult['snippet']['description'] . '</p>';
+        echo '<iframe width="100%" height="315" src="https://www.youtube.com/embed/' . $searchResult['id']['videoId'] . '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+			echo '</div>';
+			echo '</div>';
+	}
+	echo '</div>';
+	wp_enqueue_script('iframe-js',get_theme_file_uri('/js/iframe.js'));
+    return ob_get_clean();
+}
 
-
-
-// WOOCOMMERCE CONTENT WITH CUSTOM SIDEBAR
-// add_action('woocommerce_before_main_content','add_container_class',9);
-// function add_container_class(){
-// echo '<div class="container pt-5 pb-5" style="">';
-// echo '<div class="row">';
-
-// echo get_template_part('partials/sidebar');
-
-// echo '<div class="col-md-9 order-1 order-md-2">';
-// }
-
-// add_action('woocommerce_after_main_content','close_container_class',9);
-// function close_container_class(){
-// echo '</div>';
-// echo '</div>';
-// echo '</div>';
-// }
-
-// removes sidebar
-// remove_action('woocommerce_sidebar','woocommerce_get_sidebar');
+add_shortcode('youtube_videos', 'get_latest_videos_from_youtube_channel');

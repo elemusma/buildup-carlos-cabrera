@@ -3,7 +3,7 @@ echo '<footer>';
 echo '<section class="" style="padding:50px 0px;">';
 echo '<div class="container">';
 echo '<div class="row justify-content-center">';
-echo '<div class="col-md-4 text-center pb-5">';
+echo '<div class="col-md-4 col-6 text-center pb-5">';
 echo '<a href="' . home_url() . '">';
 
 $logo = get_field('logo','options'); 
@@ -13,7 +13,7 @@ echo wp_get_attachment_image($logo['id'],'full',"",['class'=>'w-100 h-auto']);
 echo '</a>';
 echo '</div>';
 
-echo '<div class="col-md-4 text-center pb-5">';
+echo '<div class="col-md-4 col-6 text-center pb-5">';
 echo '<a href="' . home_url() . '">';
 
 
@@ -27,11 +27,11 @@ echo '</div>';
 echo '</div>';
 echo '</section>';
 
-echo '<section class="bg-black">';
+echo '<section class="bg-black" style="padding:25px 0px;">';
 echo '<div class="container">';
 echo '<div class="row justify-content-center align-items-center">';
 
-echo '<div class="col-lg-3 text-center text-white">';
+echo '<div class="col-lg-3 col-6 order-1 text-center text-white">';
 
 echo get_template_part('partials/si');
 
@@ -46,7 +46,7 @@ the_field('website_message','options');
 echo '</div>';
 echo '</div>';
 
-echo '<div class="col-lg-3 text-right">';
+echo '<div class="col-lg-3 col-6 order-3 text-right">';
 echo '<a href="https://buildupuniversity.com/" target="_blank" rel="noopener noreferrer" style="" class="">';
 echo '<img src="https://buildupuniversity.com/wp-content/uploads/2024/02/backlink.png" style="width:150px;" class="h-auto ml-2" alt="">';
 
