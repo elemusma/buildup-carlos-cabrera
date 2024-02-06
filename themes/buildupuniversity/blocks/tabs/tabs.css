@@ -1,17 +1,26 @@
 /* start of tabs */
-.col-tabs {
+.content-area:not(.activate) {
+    top: -1em;
+}
+
+.content-area {
     transition: all .25s ease-in-out;
 }
 
-.col-tabs:hover {
-    background: var(--accent-tertiary) !important;
-    color: white !important;
+.tab-title {
+    background: #ddd;
+    color: #868686;
+    font-family: "proxima_novabold";
+    border-radius: 0;
+    padding: 30px 40px;
+    /* border: 1px solid #dee2e6 !important; */
+    font-weight: 700;
 }
 
-@media only screen and (max-width:768px) {
-	.tabs-divider {
-		display:none;
-	}
+.tab-title.active {
+    pointer-events: none;
+    background: var(--accent-primary);
+    color: white;
 }
 
 /* end of tabs */

@@ -3,17 +3,23 @@ echo '<footer>';
 echo '<section class="" style="padding:50px 0px;">';
 echo '<div class="container">';
 echo '<div class="row justify-content-center">';
-echo '<div class="col-md-5 text-center pb-5">';
+echo '<div class="col-md-4 text-center pb-5">';
 echo '<a href="' . home_url() . '">';
 
 $logo = get_field('logo','options'); 
+
+echo wp_get_attachment_image($logo['id'],'full',"",['class'=>'w-100 h-auto']);
+
+echo '</a>';
+echo '</div>';
+
+echo '<div class="col-md-4 text-center pb-5">';
+echo '<a href="' . home_url() . '">';
+
+
 $logoFooter = get_field('logo_footer','options'); 
 
-if($logoFooter){
-echo wp_get_attachment_image($logoFooter['id'],'full',"",['class'=>'w-100 h-auto']); 
-} elseif($logo) {
-echo wp_get_attachment_image($logo['id'],'full',"",['class'=>'w-100 h-auto']);
-}
+echo wp_get_attachment_image($logoFooter['id'],'full',"",['class'=>'w-100 h-auto']);
 
 echo '</a>';
 echo '</div>';

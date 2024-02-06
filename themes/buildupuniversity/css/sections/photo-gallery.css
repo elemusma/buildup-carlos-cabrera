@@ -47,6 +47,7 @@ button.owl-prev {
 .owl-prev span,
 .owl-next span {
   font-size: 4rem;
+  color: white;
 }
 
 /* for background galleries */

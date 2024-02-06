@@ -1,45 +1,95 @@
 <?php
+
+// start of testimonials
 echo '<section class="position-relative content-section ' . get_field('classes') . '" style="padding:50px 0;' . get_field('style') . '" id="' . get_field('id') . '">';
 
 echo get_template_part('partials/bg-img');
 
-
 echo get_field('code_block');
 
-
 echo '<div class="container">';
-
 echo '<div class="row justify-content-center">';
 
-    echo get_template_part('partials/content-block');
+echo get_template_part('partials/content-block');
 
-    echo '<h2 class="bold text-white" style="margin:0px;padding-bottom:50px;">TESTIMONIALS</h2>';
+// echo '<div class="col-12 text-center pb-4">';
+// echo '<h3 class="text-white">' . get_field('testimonials_title') . '</h3>';
+// echo '</div>';
+
+
+// start of repeater
+
+if(have_rows('testimonials')): 
+// echo '<div style="padding:50px 0px;">';
+echo '<div class="testimonial-carousel owl-carousel owl-theme arrows-middle" style="padding-top:50px;">';
+$counterTestimonials = 0; 
+while(have_rows('testimonials')): the_row(); $counterTestimonials++;
+
+echo '<div class="col col-reviews text-white h-100" style="" data-aos="fade-up" data-aos-delay="' . $counterTestimonials . '00">';
+
+echo '<div class="row h-100" style="background:#393939;border-radius:4px;padding:25px;">';
+
+// echo '<div class="col-1">';
+
+// echo '<span class="h1 text-gray" style="font-family: cursive;">"</span>';
+
+// echo '</div>';
+
+echo '<div class="col-12">';
+
+// echo '<span class="text-gray quotes-testimonial" style="font-size:3rem;">"</span>';
+
+echo '<div class="position-relative" style="">';
+
+echo '<img src="https://buildupuniversity.com/wp-content/uploads/2024/02/Google-Icon.png" alt="" class="position-absolute" style="width:25px;height:25px;object-fit:contain;right:0;top:0px;">';
+
+echo '<div class="row align-items-center position-relative">';
+
+
+echo '<div class="col-3" style="padding-left:0px;">';
+
+$headshot = get_sub_field('headshot'); 
+echo wp_get_attachment_image($headshot['id'],'full','',[
+    'class'=>'img-testimonial',
+	'style'=>'height:50px;width:50px;object-fit:contain;border-radius:50%;'
+]);
+
+echo '</div>'; // end of col-3
+
+echo '<div class="col-9" style="padding-left:0px;">';
+
+echo '<span class="name text-uppercase">' . get_sub_field('name') . '</span><br>';
+
+// echo wp_get_attachment_image(488,'full','',[
+// 	'class'=>'',
+// 	'style'=>''
+// ]);
+
+echo '<img src="https://buildupuniversity.com/wp-content/uploads/2024/02/Google-Star-Reviews.png" alt="" class="" style="width:75px;height:25px;object-fit:contain;">';
+
+// echo '<span class="industry text-white"><small>' . get_sub_field('title') . '</small></span>';
+
+echo '</div>'; // end of col-9
+echo '</div>'; // end of row
+
+echo '<small>' . get_sub_field('content') . '</small>';
+
+
+echo '</div>'; // end of position-relative
 
 echo '</div>';
-
-if(have_rows('testimonials_repeater')):
-//     echo '<div class="testimonial-carousel owl-carousel owl-theme">';
-    echo '<div class="row">';
-    while(have_rows('testimonials_repeater')): the_row();
-    echo '<div class="col-lg-4 col-12 position-relative" style="color:#acacac;padding-left:3.5rem;">';
-
-    echo '<div class="position-absolute" style="top:0;left:0;">';
-    echo '<img src="https://insideoutcreative.io/wp-content/uploads/2022/11/Quotes.png" alt="" width="25px" height="25px">';
-    echo '</div>';
-
-    echo get_sub_field('content');
-    echo '<div class="" style="padding-left:1.5rem;">';
-    echo '<span class="bold" style="color:#cccccc;">' . get_sub_field('name') . '</span><br>';
-    echo '<span class="">' . get_sub_field('job_title') . '</span>';
-    echo '</div>';
-    echo '</div>';
-
-    endwhile;
-    echo '</div>';
-    endif;
-
 echo '</div>';
 
+echo '</div>';
+endwhile; 
+echo '</div>';
+// echo '</div>';
+endif;
+// end of repeater
+
+echo '</div>';
+echo '</div>';
 echo '</section>';
+// end of testimonials
 
 ?>
