@@ -322,7 +322,7 @@ function get_latest_videos_from_youtube_channel() {
 
     // Send a request to the API to get the latest 10 videos from a specific channel
     $searchResponse = $youtube->search->listSearch('id,snippet', array(
-        'channelId' => 'UCNlzIzvhDCggZYg5DU-jQ5g', // AdamZwingler
+        'channelId' => 'UCBa1tZzXYWXsk7P-qKNHEtA',
         'type' => 'video',
         'order' => 'date',
         'maxResults' => 4,
